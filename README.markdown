@@ -1,10 +1,10 @@
-== Config parser gem
+## Config parser gem
 
 Parsing an options.yml file into a Hash with convenience methods like
 overwriting variables per Rails environment and overwriting variables with a local
 options_local.yml file.
 
-=== Installation
+### Installation
 
 The best way to install is with RubyGems:
 
@@ -14,12 +14,12 @@ Or better still, just add it to your Gemfile:
 
     gem 'config-parser'
 
-=== Defaults
+### Defaults
 
 Per default the parser will search for the config file at config/options.yml and config/options-local.yml.
 
 
-=== Example
+### Example
 
 Example config file:
 
