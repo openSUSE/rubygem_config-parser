@@ -9,7 +9,7 @@ options_local.yml file."
   gem.files = `git ls-files`.split("\n")
   gem.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.require_paths = ['lib']
-  gem.version = '0.1'
+  gem.version = '0.2'
 end
 
 
