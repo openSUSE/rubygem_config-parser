@@ -27,10 +27,11 @@ module Common
 
   class Options
 
-    def initialize
+    def initialize(cfg_file = 'config/options.yml', local_cfg_file = 'config/options-local.yml', load_env = nil)
       Common::Utils::suppress_warnings do
-        @cfg_file = 'config/options.yml'
-        @local_cfg_file = 'config/options-local.yml'
+        @load_env = load_env
+        @cfg_file = cfg_file
+        @local_cfg_file = local_cfg_file
         @tmp_cmdl_file = 'tmp/options-cmd-line.yml'
         @persistent_local_cfg_file = '/etc/options.yml'
         if defined? Rails
@@ -57,7 +58,11 @@ module Common
         end
       end
 
-      cmd_line_args['environment'] = Rails.env.to_s if defined? Rails
+      if defined? Rails
+        cmd_line_args['environment'] = Rails.env.to_s
+      else
+        cmd_line_args['environment'] = @load_env.to_s
+      end
 
       if cmd_line_args['environment'] == 'test' and cmd_line_args['verbose'].nil?
         cmd_line_args['verbose'] = 'silent'
