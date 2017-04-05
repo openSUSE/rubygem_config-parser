@@ -21,6 +21,8 @@
 #THE SOFTWARE.
 
 require 'yaml'
+require 'erb'
+
 require "#{File.dirname(__FILE__)}/utils"
 
 module Common
@@ -48,7 +50,7 @@ module Common
       cmd_line_args = {}
 
       if File.exists? @tmp_cmdl_file
-        cmd_line_args = YAML.load_file(@tmp_cmdl_file)
+        cmd_line_args = load_file(@tmp_cmdl_file)
 
         # Don't remove tmp_cmdl_file if the keep_tmp_cmdl_file flag is set.
         if defined? KEEP_TMP_CMDL_FILE and KEEP_TMP_CMDL_FILE
@@ -96,7 +98,7 @@ module Common
 
       if File.exists? @cfg_file
         vputs "Loading '#{@cfg_file}'", args[:verbose]
-        options = YAML.load_file @cfg_file
+        options = load_file @cfg_file
       end
 
       if args[:config_file]
@@ -135,6 +137,10 @@ module Common
 
     private
 
+    def load_file(filename)
+      YAML.load(ERB.new(File.read(filename)).result binding)
+    end
+
     def vputs msg, verbose
       return if verbose == 'silent' || verbose.nil?
       puts "** P#{Process.pid} #{msg}"
@@ -160,7 +166,7 @@ module Common
 
     # Update options.
     def update_options file, options
-      YAML.load_file(file).each do |k, v|
+      load_file(file).each do |k, v|
         next unless v
         if options[k]
           options[k].update(v)
