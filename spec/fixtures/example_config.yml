@@ -1,0 +1,4 @@
+default:
+  plain_key: plain_value
+  erb_key: <%= %w(erb value).join('_') %>
+  mixed_key: "<%= 'mixed_' %>value"
