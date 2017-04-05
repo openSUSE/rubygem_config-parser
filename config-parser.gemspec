@@ -10,6 +10,7 @@ options_local.yml file."
   gem.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.require_paths = ['lib']
   gem.version = '0.2.0'
+  gem.add_development_dependency "rspec"
 end
 
 
