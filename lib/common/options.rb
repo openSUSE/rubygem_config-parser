@@ -22,6 +22,7 @@
 
 require 'yaml'
 require 'erb'
+require 'deep_merge'
 
 require "#{File.dirname(__FILE__)}/utils"
 
@@ -68,7 +69,7 @@ module Common
 
       if cmd_line_args['environment'] == 'test' and cmd_line_args['verbose'].nil?
         # cmd_line_args['verbose'] = 'silent'
-        cmd_line_args['verbose'] = 'verbose'
+        cmd_line_args['verbose'] = 'silent'
       end
 
       if cmd_line_args['environment'].nil?
@@ -119,7 +120,7 @@ module Common
 
       if args[:environment]
         vputs "Using environment '#{args[:environment]}'", args[:verbose]
-        options = (options['default']||{}).update(options[args[:environment]]||{})
+        options = (options['default']||{}).deep_merge!(options[args[:environment]]||{})
       end
 
       options.update(update_options)
@@ -165,16 +166,12 @@ module Common
       raise NoMethodError.new("undefined method `#{key}' for Options:Class", "unknown_key")
     end
 
-    # Update options.
+    # Merge options with content of <file>.
     def update_options file, options
-      load_file(file).each do |k, v|
-        next unless v
-        if options[k]
-          options[k].update(v)
-        else
-          options[k] = v
-        end
-      end
+      puts options
+      puts load_file(file)
+      options.deep_merge!(load_file(file))
     end
+
   end
 end

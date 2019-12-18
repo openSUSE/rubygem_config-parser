@@ -43,6 +43,7 @@ and you can use the config variables like:
 
 ```ruby
 OPTS.<variable_name>
+OPTS.<variable_name>[:nested_value]
 ```
 
 Also, you can pass main config and local config location as well as environment to load

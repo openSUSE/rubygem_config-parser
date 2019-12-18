@@ -13,6 +13,5 @@ options_local.yml file."
   gem.license = 'MIT'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rspec-its'
+  gem.add_development_dependency 'deep_merge'
 end
-
-
