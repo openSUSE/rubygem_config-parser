@@ -67,7 +67,8 @@ module Common
       end
 
       if cmd_line_args['environment'] == 'test' and cmd_line_args['verbose'].nil?
-        cmd_line_args['verbose'] = 'silent'
+        # cmd_line_args['verbose'] = 'silent'
+        cmd_line_args['verbose'] = 'verbose'
       end
 
       if cmd_line_args['environment'].nil?
@@ -111,7 +112,7 @@ module Common
       elsif @persistent_local_cfg_file && File.exists?(@persistent_local_cfg_file)
         vputs "Loading '#{@persistent_local_cfg_file}'", args[:verbose]
         update_options(@persistent_local_cfg_file, options)
-      elsif File.exists? @local_cfg_file
+      elsif @local_cfg_file && File.exists?(@local_cfg_file)
         vputs "Loading '#{@local_cfg_file}'", args[:verbose]
         update_options(@local_cfg_file, options)
       end

@@ -1,0 +1,14 @@
+default:
+
+  plain_key: plain_value_local
+
+  nested:
+    nested_key: nested_value_local
+
+
+test:
+  env_only_key: test_value_local
+  env_overwrite_key: test_value_local
+
+  nested_env:
+    nested_key: nested_value_test_local

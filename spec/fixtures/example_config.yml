@@ -2,3 +2,21 @@ default:
   plain_key: plain_value
   erb_key: <%= %w(erb value).join('_') %>
   mixed_key: "<%= 'mixed_' %>value"
+
+  nested:
+    nested_key: nested_value_default
+    nested_key2: nested_value_default2
+
+  nested_env:
+    nested_key: nested_value_env
+    nested_key2: nested_value_env2
+
+  env_overwrite_key: env_value
+
+
+test:
+  env_only_key: test_value
+  env_overwrite_key: test_value
+
+  nested_env:
+    nested_key: nested_value_test
