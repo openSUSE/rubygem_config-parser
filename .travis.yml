@@ -1,8 +1,8 @@
 language: ruby
 cache: bundler
 
-  before_install:
-    - gem install bundler
+before_install:
+  - gem install bundler
 
 rvm:
  - 1.9
