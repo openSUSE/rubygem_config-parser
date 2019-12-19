@@ -1,22 +1,24 @@
-## Config parser gem
+[![Build Status](https://travis-ci.org/openSUSE/rubygem_config-parser.png?branch=master)](https://travis-ci.org/openSUSE/rubygem_config-parser)
 
-Parsing an options.yml file into a Hash with convenience methods like
+## Ruby Config Parser
+
+Providing config values for your Ruby app with convenience methods like
 overwriting variables per Rails environment and overwriting variables with a local
 options_local.yml file.
 
 ### Installation
 
-The best way to install is with RubyGems:
+The best way to install is with [RubyGems](https://rubygems.org/gems/config-parser):
 
-    $ [sudo] gem install config-parser
+    $ gem install config-parser
 
-Or better still, just add it to your Gemfile:
+Or better still, just add it to your `Gemfile`:
 
     gem 'config-parser'
 
 ### Defaults
 
-Per default the parser will search for the config file at config/options.yml and config/options-local.yml.
+Per default the parser will search for the config file at `config/options.yml` and local overrides at `config/options-local.yml`.
 
 
 ### Example
@@ -33,7 +35,12 @@ Example config file:
 When running in the production environment, the mailer_delivery_method will be set to
 'smtp'. The same works for all other environments. The optional options_local.yml file
 would have the same layout.
-When used from a Rails app, just include in your application.rb:
+
+The precedence of config values goes like this (from lowest to highest):
+
+`options.yml default section -> options.yml environment section -> options-local.yml default section -> options-local.yml environment section`
+
+When used from a Rails app, just include in your `application.rb`:
 
 ```ruby
 OPTS = Common::Options.new
@@ -43,6 +50,7 @@ and you can use the config variables like:
 
 ```ruby
 OPTS.<variable_name>
+OPTS.<variable_name>[:nested_value]
 ```
 
 Also, you can pass main config and local config location as well as environment to load

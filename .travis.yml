@@ -1,0 +1,16 @@
+language: ruby
+cache: bundler
+
+before_install:
+  - gem install bundler -v '< 2' --conservative
+
+rvm:
+ - 1.9
+ - 2.0
+ - 2.3.3
+ - 2.5.1
+
+sudo: false
+
+script:
+ - 'COVERAGE=true bundle exec rspec'
