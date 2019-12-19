@@ -1,0 +1,12 @@
+language: ruby
+cache: bundler
+rvm:
+ - 1.9
+ - 2.0
+ - 2.3.3
+ - 2.5.1
+
+sudo: false
+
+script:
+ - 'COVERAGE=true bundle exec rspec'

@@ -10,6 +10,4 @@ describe Common::Options do
   it 'reads nested value' do
     expect( subject.nested['nested_key'] ).to eq("nested_value_default")
   end
-
-
 end

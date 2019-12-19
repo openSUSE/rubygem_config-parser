@@ -68,7 +68,6 @@ module Common
       end
 
       if cmd_line_args['environment'] == 'test' and cmd_line_args['verbose'].nil?
-        # cmd_line_args['verbose'] = 'silent'
         cmd_line_args['verbose'] = 'silent'
       end
 
@@ -168,8 +167,6 @@ module Common
 
     # Merge options with content of <file>.
     def update_options file, options
-      puts options
-      puts load_file(file)
       options.deep_merge!(load_file(file))
     end
 
