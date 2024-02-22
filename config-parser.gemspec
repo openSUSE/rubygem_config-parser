@@ -9,9 +9,9 @@ Gem::Specification.new do |gem|
   gem.files = `git ls-files`.split("\n")
   gem.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.require_paths = ['lib']
-  gem.version = '0.4.0'
+  gem.version = '0.4.1'
   gem.license = 'MIT'
+  gem.add_dependency 'deep_merge', '~> 1.2', '>= 1.2.1'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rspec-its'
-  gem.add_development_dependency 'deep_merge'
 end

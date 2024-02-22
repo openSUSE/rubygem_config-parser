@@ -22,7 +22,7 @@
 
 require 'yaml'
 require 'erb'
-require 'deep_merge'
+require 'deep_merge/core'
 
 require "#{File.dirname(__FILE__)}/utils"
 
